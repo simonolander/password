@@ -2,10 +2,10 @@
   "name": "password",
   "version": "1.0.0",
   "description": "A small game about password clues",
-  "main": "index.js",
+  "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo Nothing to do"
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/simonolander/password/issues"
   },
-  "homepage": "https://github.com/simonolander/password#readme"
+  "homepage": "https://github.com/simonolander/password#readme",
+  "dependencies": {
+    "bulma": "0.9.3"
+  },
+  "devDependencies": {
+    "parcel": "2.0.0-rc.0"
+  }
 }
