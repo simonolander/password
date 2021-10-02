@@ -1,0 +1,19 @@
+{
+  "name": "password",
+  "version": "1.0.0",
+  "description": "A small game about password clues",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonolander/password.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/simonolander/password/issues"
+  },
+  "homepage": "https://github.com/simonolander/password#readme"
+}
