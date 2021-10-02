@@ -2,10 +2,10 @@
   "name": "password",
   "version": "1.0.0",
   "description": "A small game about password clues",
-  "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "serve": "parcel serve src/index.html --port 3000"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "bulma": "0.9.3"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.0.0-rc.0",
     "parcel": "2.0.0-rc.0"
   }
 }
