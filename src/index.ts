@@ -2,7 +2,7 @@ const usernameInput = document.getElementById("username") as HTMLInputElement
 const passwordInput = document.getElementById("password") as HTMLInputElement
 const passwordHint = document.getElementById("password-hint") as HTMLParagraphElement
 
-async function setUsername() {
+function setUsername() {
     const username = "Alfons"
     usernameInput.value = username
     return username
@@ -10,15 +10,29 @@ async function setUsername() {
 
 function onPasswordChange() {
     passwordInput.classList.remove("is-danger")
+    passwordHint.textContent = ""
+}
+
+function validatePassword(password: string): string {
+    return ""
 }
 
 function onFormSubmit(): false {
-    passwordInput.classList.add("is-danger")
+    const password = passwordInput.value
+    const validation = validatePassword(password)
+    if (validation) {
+        passwordHint.textContent = validation
+        passwordInput.classList.add("is-danger")
+    }
+    else {
+
+    }
     return false
 }
 
-async function main() {
-    const username = await setUsername()
+function main() {
+    const username = setUsername()
+    const password = "passw0rd"
 }
 
-main().catch(console.error)
+main()
