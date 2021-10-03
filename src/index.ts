@@ -55,7 +55,7 @@ function main() {
     }
 
     const username = setUsername()
-    const correctPassword = "Surströmming13"
+    const correctPassword = "Surströmming🐟13"
     const validators = generateValidators(username, correctPassword)
     signInForm.onsubmit = onFormSubmit(validators)
 }

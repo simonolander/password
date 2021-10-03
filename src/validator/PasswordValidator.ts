@@ -1,3 +1,5 @@
+import emojiRegex from "emoji-regex"
+
 export type PasswordValidator = (password: string) => string | undefined
 
 function randomInt(min: number, max: number): number {
@@ -66,11 +68,20 @@ const mustContainScandinavian = function (correctPassword: string) {
     }
 }
 
-const cannotContainÆØ = function (correctPassword: string) {
+const cannotContainDanish = function (correctPassword: string) {
     const regex = /[øØæÆ]/
     return function (password: string): string {
         if (!regex.test(correctPassword) && regex.test(password)) {
             return `Password must not contain Danish characters æ, ø`
+        }
+    }
+}
+
+const mustContainEmoji = function (correctPassword: string) {
+    const regex = emojiRegex()
+    return function (password: string): string {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must contain at least one emoji 👆`
         }
     }
 }
@@ -84,6 +95,7 @@ export function generateValidators(username: string, password: string): Password
         mustContainLowercase(password),
         mustContainUppercase(password),
         mustContainScandinavian(password),
-        cannotContainÆØ(password),
+        cannotContainDanish(password),
+        mustContainEmoji(password),
     ]
 }
