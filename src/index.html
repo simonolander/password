@@ -12,8 +12,8 @@
             <div class="hero-body">
                 <div class="container">
                     <div class="column is-4 is-offset-4">
-                        <h1 class="title">Sign in</h1>
                         <form id="sign-in-form">
+                            <h1 class="title">Sign in</h1>
                             <div class="field">
                                 <label class="label" for="username">Username</label>
                                 <div class="control has-icons-left">
@@ -39,6 +39,17 @@
                                 </p>
                             </div>
                         </form>
+                        <div id="victory-content" class="is-hidden">
+                            <h1 class="title">Well done!</h1>
+                            <p class="subtitle">
+                                The password was <code id="password-revealed"></code>!
+                            </p>
+                            <div class="field">
+                                <p class="control">
+                                    <button id="new-game" class="button is-success">New game</button>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,9 @@ const usernameInput = document.getElementById("username") as HTMLInputElement
 const passwordInput = document.getElementById("password") as HTMLInputElement
 const passwordHint = document.getElementById("password-hint") as HTMLParagraphElement
 const signInForm = document.getElementById("sign-in-form") as HTMLFormElement
+const newGameButton = document.getElementById("new-game")
+const victoryContent = document.getElementById("victory-content")
+const passwordRevealed = document.getElementById("password-revealed") as HTMLParagraphElement
 
 function setUsername() {
     const username = "Alfons"
@@ -26,7 +29,9 @@ function validatePassword(validators: PasswordValidator[], password: string): st
 }
 
 function victory(password: string) {
-    main()
+    passwordRevealed.textContent = password
+    signInForm.classList.add("is-hidden")
+    victoryContent.classList.remove("is-hidden")
 }
 
 function onFormSubmit(validators: PasswordValidator[]) {
@@ -45,6 +50,10 @@ function onFormSubmit(validators: PasswordValidator[]) {
 }
 
 function main() {
+    newGameButton.onclick = function () {
+        document.location.reload()
+    }
+
     const username = setUsername()
     const correctPassword = "passw0rd"
     const validators = generateValidators(username, correctPassword)
