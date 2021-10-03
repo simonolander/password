@@ -30,10 +30,20 @@ const maximumLength = function (correctPassword: string) {
     }
 }
 
+const mustContainDigit = function (correctPassword: string) {
+    const regex = /[0-9]/
+    return function (password: string): string {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must contain at least one digit`
+        }
+    }
+}
+
 export function generateValidators(username: string, password: string): PasswordValidator[] {
     return [
         cannotBeEmpty(password),
         minimumLength(password),
         maximumLength(password),
+        mustContainDigit(password),
     ]
 }
