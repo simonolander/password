@@ -21,9 +21,19 @@ const minimumLength = function (correctPassword: string) {
     }
 }
 
+const maximumLength = function (correctPassword: string) {
+    const maximumSize = randomInt(correctPassword.length, correctPassword.length * 2 + 1)
+    return function (password: string): string {
+        if (password.length > maximumSize) {
+            return `Password must be at most ${maximumSize} characters long`
+        }
+    }
+}
+
 export function generateValidators(username: string, password: string): PasswordValidator[] {
     return [
         cannotBeEmpty(password),
         minimumLength(password),
+        maximumLength(password),
     ]
 }
