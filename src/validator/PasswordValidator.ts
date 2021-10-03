@@ -86,6 +86,44 @@ const mustContainEmoji = function (correctPassword: string) {
     }
 }
 
+const vowelsAndConsonants = function (correctPassword: string) {
+    const vowels = /[aeiouyåäö]/i
+    const consonants = /[bcdfghjklmnpqrstvwxz]/i
+    const correctPasswordVowels = vowels.exec(correctPassword).length
+    const correctPasswordConsonants = consonants.exec(correctPassword).length
+    return function (password: string): string {
+        const passwordVowels = vowels.exec(password).length
+        const passwordConsonants = consonants.exec(password).length
+        if (correctPasswordVowels === correctPasswordConsonants) {
+            if (passwordVowels !== passwordConsonants) {
+                return "Password must contain the same number of vowels and consonants"
+            }
+        }
+        else if (correctPasswordVowels > correctPasswordConsonants) {
+            if (passwordVowels <= passwordConsonants) {
+                return "Password must contain more vowels than consonants"
+            }
+        }
+        else {
+            if (passwordVowels >= passwordConsonants) {
+                return "Password must not contain more vowels than consonants"
+            }
+        }
+    }
+}
+
+const mustContainMoreConsonants = function (correctPassword: string) {
+    const vowels = /[aeiouyåäö]/i
+    const consonants = /[bcdfghjklmnpqrstvwxz]/i
+    return function (password: string): string {
+        if (vowels.exec(correctPassword).length > consonants.exec(correctPassword).length) {
+            if (vowels.exec(password).length <= consonants.exec(password).length) {
+                return `Password must contain more vowels than consonants`
+            }
+        }
+    }
+}
+
 export function generateValidators(username: string, password: string): PasswordValidator[] {
     return [
         cannotBeEmpty(password),
@@ -97,5 +135,6 @@ export function generateValidators(username: string, password: string): Password
         mustContainScandinavian(password),
         cannotContainDanish(password),
         mustContainEmoji(password),
+        vowelsAndConsonants(password),
     ]
 }
