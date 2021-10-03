@@ -13,7 +13,7 @@
                 <div class="container">
                     <div class="column is-4 is-offset-4">
                         <h1 class="title">Sign in</h1>
-                        <form onsubmit="return onFormSubmit()">
+                        <form id="sign-in-form">
                             <div class="field">
                                 <label class="label" for="username">Username</label>
                                 <div class="control has-icons-left">
@@ -26,7 +26,7 @@
                             <div class="field">
                                 <label class="label" for="password">Password</label>
                                 <div class="control has-icons-left">
-                                    <input id="password" autofocus class="input" type="text" placeholder="Password" oninput="onPasswordChange()" autocomplete="off">
+                                    <input id="password" autofocus class="input" type="text" placeholder="Password" autocomplete="off">
                                     <span class="icon is-small is-left">
                                     <i class="fas fa-lock"></i>
                                 </span>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="field">
                                 <p class="control">
-                                    <input type="submit" value="Sign in" class="button is-success"">
+                                    <input type="submit" value="Sign in" class="button is-success">
                                 </p>
                             </div>
                         </form>
@@ -43,6 +43,6 @@
                 </div>
             </div>
         </section>
-        <script src="index.ts"></script>
+        <script src="index.ts" type="module"></script>
     </body>
 </html>
