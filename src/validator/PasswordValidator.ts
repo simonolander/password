@@ -39,11 +39,51 @@ const mustContainDigit = function (correctPassword: string) {
     }
 }
 
+const mustContainLowercase = function (correctPassword: string) {
+    const regex = /[a-zåäö]/
+    return function (password: string): string {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must contain at least one lowercase character`
+        }
+    }
+}
+
+const mustContainUppercase = function (correctPassword: string) {
+    const regex = /[A-ZÅÄÖ]/
+    return function (password: string): string {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must contain at least one uppercase character`
+        }
+    }
+}
+
+const mustContainScandinavian = function (correctPassword: string) {
+    const regex = /[åäöÅÄÖæÆøØ]/
+    return function (password: string): string {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must contain at least one Scandinavian character å, ä, ö`
+        }
+    }
+}
+
+const cannotContainÆØ = function (correctPassword: string) {
+    const regex = /[øØæÆ]/
+    return function (password: string): string {
+        if (!regex.test(correctPassword) && regex.test(password)) {
+            return `Password must not contain Danish characters æ, ø`
+        }
+    }
+}
+
 export function generateValidators(username: string, password: string): PasswordValidator[] {
     return [
         cannotBeEmpty(password),
         minimumLength(password),
         maximumLength(password),
         mustContainDigit(password),
+        mustContainLowercase(password),
+        mustContainUppercase(password),
+        mustContainScandinavian(password),
+        cannotContainÆØ(password),
     ]
 }
