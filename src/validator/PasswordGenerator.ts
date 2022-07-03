@@ -1,7 +1,7 @@
-import {choose, chooseArray, emojis, randomInt} from "./util";
+import {choose, chooseArray, emojis, heartEmojis, randomInt} from "./util";
 
 function emoji(): string {
-    return choose(emojis)
+    return choose(heartEmojis)
 }
 
 function lowercase(): string {
