@@ -112,18 +112,6 @@ const vowelsAndConsonants = function (correctPassword: string) {
     }
 }
 
-const mustContainMoreConsonants = function (correctPassword: string) {
-    const vowels = /[aeiouyåäö]/i
-    const consonants = /[bcdfghjklmnpqrstvwxz]/i
-    return function (password: string): string {
-        if (vowels.exec(correctPassword).length > consonants.exec(correctPassword).length) {
-            if (vowels.exec(password).length <= consonants.exec(password).length) {
-                return `Password must contain more vowels than consonants`
-            }
-        }
-    }
-}
-
 export function generateValidators(username: string, password: string): PasswordValidator[] {
     return [
         cannotBeEmpty(password),
