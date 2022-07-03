@@ -60,6 +60,7 @@ function main() {
 
     const username = setUsername()
     const correctPassword = generatePassword()
+    document.getElementById("debug").textContent = correctPassword
     const validators = generateValidators(username, correctPassword)
     signInForm.onsubmit = onFormSubmit(validators)
 }
