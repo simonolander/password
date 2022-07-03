@@ -1,10 +1,7 @@
 import emojiRegex from "emoji-regex"
+import {length} from "./util";
 
 export type PasswordValidator = (password: string) => string | undefined
-
-function randomInt(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min)) + min
-}
 
 const cannotBeEmpty = function (correctPassword: string): PasswordValidator {
     return function (password: string): string {
@@ -15,18 +12,18 @@ const cannotBeEmpty = function (correctPassword: string): PasswordValidator {
 }
 
 const minimumLength = function (correctPassword: string) {
-    const minimumSize = Math.floor(correctPassword.length / 4) * 4
+    const minimumSize = Math.floor(length(correctPassword) / 4) * 4
     return function (password: string): string {
-        if (password.length < minimumSize) {
+        if (length(password) < minimumSize) {
             return `Password must be at least ${minimumSize} characters long`
         }
     }
 }
 
 const maximumLength = function (correctPassword: string) {
-    const maximumSize = Math.floor(correctPassword.length / 4 + 1) * 4
+    const maximumSize = Math.floor(length(correctPassword) / 4 + 1) * 4
     return function (password: string): string {
-        if (password.length > maximumSize) {
+        if (length(password) > maximumSize) {
             return `Password must be at most ${maximumSize} characters long`
         }
     }

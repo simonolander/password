@@ -1,4 +1,5 @@
 import {generateValidators, PasswordValidator} from "./validator/PasswordValidator"
+import {generatePassword} from "./validator/PasswordGenerator";
 
 const usernameInput = document.getElementById("username") as HTMLInputElement
 const passwordInput = document.getElementById("password") as HTMLInputElement
@@ -58,7 +59,7 @@ function main() {
     }
 
     const username = setUsername()
-    const correctPassword = "Surströmming🐟13"
+    const correctPassword = generatePassword()
     const validators = generateValidators(username, correctPassword)
     signInForm.onsubmit = onFormSubmit(validators)
 }
