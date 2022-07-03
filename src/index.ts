@@ -49,6 +49,9 @@ function onFormSubmit(validators: PasswordValidator[]) {
     }
 }
 
+/**
+ * Launches the application
+ */
 function main() {
     newGameButton.onclick = function () {
         document.location.reload()
