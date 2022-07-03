@@ -15,7 +15,7 @@ const cannotBeEmpty = function (correctPassword: string): PasswordValidator {
 }
 
 const minimumLength = function (correctPassword: string) {
-    const minimumSize = randomInt(0, correctPassword.length + 1)
+    const minimumSize = Math.floor(correctPassword.length / 4) * 4
     return function (password: string): string {
         if (password.length < minimumSize) {
             return `Password must be at least ${minimumSize} characters long`
@@ -24,7 +24,7 @@ const minimumLength = function (correctPassword: string) {
 }
 
 const maximumLength = function (correctPassword: string) {
-    const maximumSize = randomInt(correctPassword.length, correctPassword.length * 2 + 1)
+    const maximumSize = Math.floor(correctPassword.length / 4 + 1) * 4
     return function (password: string): string {
         if (password.length > maximumSize) {
             return `Password must be at most ${maximumSize} characters long`
@@ -63,7 +63,7 @@ const mustContainScandinavian = function (correctPassword: string) {
     const regex = /[åäöÅÄÖæÆøØ]/
     return function (password: string): string {
         if (regex.test(correctPassword) && !regex.test(password)) {
-            return `Password must contain at least one Scandinavian character å, ä, ö`
+            return `Password must contain at least one Scandinavian character å, ä, æ, ö, ø`
         }
     }
 }
