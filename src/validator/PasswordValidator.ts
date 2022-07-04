@@ -83,6 +83,33 @@ const mustContainEmoji = function (correctPassword: string) {
     }
 }
 
+const mustBeginWithUppercase = function (correctPassword: string) {
+    const regex = /^[A-ZÅÄÖ]/
+    return function (password: string) {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must begin with an uppercase character`
+        }
+    }
+}
+
+const mustBeginWithLowercase = function (correctPassword: string) {
+    const regex = /^[a-zåäö]/
+    return function (password: string) {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must begin with a lowercase character`
+        }
+    }
+}
+
+const mustBeginWithDigit = function (correctPassword: string) {
+    const regex = /^[0-9]/
+    return function (password: string) {
+        if (regex.test(correctPassword) && !regex.test(password)) {
+            return `Password must begin with a digit`
+        }
+    }
+}
+
 const vowelsAndConsonants = function (correctPassword: string) {
     const vowels = /[aeiouyåäö]/i
     const consonants = /[bcdfghjklmnpqrstvwxz]/i
@@ -95,13 +122,11 @@ const vowelsAndConsonants = function (correctPassword: string) {
             if (passwordVowels !== passwordConsonants) {
                 return "Password must contain the same number of vowels and consonants"
             }
-        }
-        else if (correctPasswordVowels > correctPasswordConsonants) {
+        } else if (correctPasswordVowels > correctPasswordConsonants) {
             if (passwordVowels <= passwordConsonants) {
                 return "Password must contain more vowels than consonants"
             }
-        }
-        else {
+        } else {
             if (passwordVowels >= passwordConsonants) {
                 return "Password must not contain more vowels than consonants"
             }
@@ -111,15 +136,18 @@ const vowelsAndConsonants = function (correctPassword: string) {
 
 export function generateValidators(username: string, password: string): PasswordValidator[] {
     return [
-        cannotBeEmpty(password),
-        minimumLength(password),
-        maximumLength(password),
-        mustContainDigit(password),
-        mustContainLowercase(password),
-        mustContainUppercase(password),
-        mustContainScandinavian(password),
-        cannotContainDanish(password),
-        mustContainEmoji(password),
-        vowelsAndConsonants(password),
-    ]
+        cannotBeEmpty,
+        minimumLength,
+        maximumLength,
+        mustContainDigit,
+        mustContainLowercase,
+        mustContainUppercase,
+        mustContainScandinavian,
+        cannotContainDanish,
+        mustContainEmoji,
+        vowelsAndConsonants,
+        mustBeginWithUppercase,
+        mustBeginWithLowercase,
+        mustBeginWithDigit,
+    ].map(f => f(password))
 }

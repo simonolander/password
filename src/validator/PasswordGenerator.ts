@@ -21,7 +21,7 @@ function randomSymbol(): string {
 }
 
 export function generatePassword() {
-    const numberOfCharacters = randomInt(4, 17)
+    const numberOfCharacters = randomInt(4, 16)
     let password = ""
     for (let i = 0; i < numberOfCharacters; ++i) {
         password += randomSymbol()
