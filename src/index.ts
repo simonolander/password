@@ -1,5 +1,5 @@
-import {generateValidators, PasswordValidator} from "./validator/PasswordValidator"
-import {generatePassword} from "./validator/PasswordGenerator";
+import {PasswordValidator} from "./validator/PasswordValidator"
+import {Level, Levels} from "./domain/Level";
 
 const oldPasswordInput = document.getElementById("old-password") as HTMLInputElement
 const newPasswordInput = document.getElementById("new-password") as HTMLInputElement
@@ -35,16 +35,16 @@ function victory(password: string) {
     victoryContent.classList.remove("is-hidden")
 }
 
-function onFormSubmit(validators: PasswordValidator[]) {
+function onFormSubmit(level: Level) {
     return function () {
         const password = newPasswordInput.value
-        const validation = validatePassword(validators, password)
-        if (validation) {
-            passwordHint.textContent = validation
-            newPasswordInput.classList.add("is-danger")
-        } else {
-            victory(password)
+        for (const validator of level.validators) {
+            if (!validator.validate(password)) {
+                passwordHint.textContent = validator.message
+                return false
+            }
         }
+        victory(password)
         return false
     }
 }
@@ -57,10 +57,8 @@ function main() {
         document.location.reload()
     }
 
-    const correctPassword = generatePassword()
-    document.getElementById("debug").textContent = correctPassword
-    const validators = generateValidators("username", correctPassword)
-    signInForm.onsubmit = onFormSubmit(validators)
+    const level = Levels[0]
+    signInForm.onsubmit = onFormSubmit(level)
 }
 
 main()
