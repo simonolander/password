@@ -1,22 +1,22 @@
 import {generateValidators, PasswordValidator} from "./validator/PasswordValidator"
 import {generatePassword} from "./validator/PasswordGenerator";
 
-const usernameInput = document.getElementById("username") as HTMLInputElement
-const passwordInput = document.getElementById("password") as HTMLInputElement
+const oldPasswordInput = document.getElementById("old-password") as HTMLInputElement
+const newPasswordInput = document.getElementById("new-password") as HTMLInputElement
 const passwordHint = document.getElementById("password-hint") as HTMLParagraphElement
 const signInForm = document.getElementById("sign-in-form") as HTMLFormElement
 const newGameButton = document.getElementById("new-game")
 const victoryContent = document.getElementById("victory-content")
 const passwordRevealed = document.getElementById("password-revealed") as HTMLParagraphElement
 
-function setUsername() {
-    const username = "Alfons"
-    usernameInput.value = username
+function setOldPassword() {
+    const username = "hi there"
+    oldPasswordInput.value = username
     return username
 }
 
-passwordInput.oninput = function onPasswordChange() {
-    passwordInput.classList.remove("is-danger")
+newPasswordInput.oninput = function onPasswordChange() {
+    newPasswordInput.classList.remove("is-danger")
     passwordHint.textContent = ""
 }
 
@@ -37,12 +37,11 @@ function victory(password: string) {
 
 function onFormSubmit(validators: PasswordValidator[]) {
     return function () {
-        const password = passwordInput.value
+        const password = newPasswordInput.value
         const validation = validatePassword(validators, password)
-        console.info(validation)
         if (validation) {
             passwordHint.textContent = validation
-            passwordInput.classList.add("is-danger")
+            newPasswordInput.classList.add("is-danger")
         } else {
             victory(password)
         }
@@ -58,10 +57,9 @@ function main() {
         document.location.reload()
     }
 
-    const username = setUsername()
     const correctPassword = generatePassword()
     document.getElementById("debug").textContent = correctPassword
-    const validators = generateValidators(username, correctPassword)
+    const validators = generateValidators("username", correctPassword)
     signInForm.onsubmit = onFormSubmit(validators)
 }
 

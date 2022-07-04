@@ -12,30 +12,30 @@
             <div class="hero-body">
                 <div class="container">
                     <div class="column is-4 is-offset-4">
-                        <form id="sign-in-form">
-                            <h1 class="title">Sign in</h1>
+                        <form id="sign-in-form" autocomplete="off">
+                            <h1 class="title">Change password</h1>
                             <div class="field">
-                                <label class="label" for="username">Username</label>
+                                <label class="label" for="old-password">Old password</label>
                                 <div class="control has-icons-left">
-                                    <input id="username" class="input" type="text" placeholder="Username" disabled>
+                                    <input id="old-password" class="input" type="text" placeholder="Password" disabled value="••••••••">
                                     <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fas fa-lock"></i>
                                 </span>
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label" for="password">Password</label>
+                                <label class="label" for="new-password">New password</label>
                                 <div class="control has-icons-left">
-                                    <input id="password" autofocus class="input" type="text" placeholder="Password" autocomplete="off">
+                                    <input id="new-password" autofocus class="input" type="text" placeholder="Password" autocomplete="off">
                                     <span class="icon is-small is-left">
-                                    <i class="fas fa-lock"></i>
+                                    <i class="fas fa-key"></i>
                                 </span>
                                 </div>
                                 <p id="password-hint" class="help is-danger"></p>
                             </div>
                             <div class="field">
                                 <p class="control">
-                                    <input type="submit" value="Sign in" class="button is-success">
+                                    <input type="submit" value="Update" class="button is-success">
                                 </p>
                             </div>
                         </form>
@@ -50,7 +50,7 @@
                                 </p>
                             </div>
                         </div>
-                        <p id="debug"></p>
+                        <p id="debug" style="display: none"></p>
                     </div>
                 </div>
             </div>
