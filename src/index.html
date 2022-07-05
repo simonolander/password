@@ -1,60 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Enter new password</title>
-        <link rel="stylesheet" href="index.scss" type="text/css">
-        <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/solid.min.css" type="text/css">
-    </head>
-    <body>
-        <section class="hero is-fullheight">
-            <div class="hero-body">
-                <div class="container">
-                    <div class="column is-4 is-offset-4">
-                        <form id="sign-in-form" autocomplete="off">
-                            <h1 class="title">Enter new password</h1>
-                            <div class="field">
-                                <label class="label" for="old-password">Old password</label>
-                                <div class="control has-icons-left">
-                                    <input id="old-password" class="input" type="text" placeholder="Password" disabled value="••••••••">
-                                    <span class="icon is-small is-left">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enter new password</title>
+    <link rel="stylesheet" href="index.scss" type="text/css">
+    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/solid.min.css" type="text/css">
+</head>
+<body>
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4 is-offset-2">
+                    <form id="sign-in-form" autocomplete="off">
+                        <h1 class="title">Enter new password</h1>
+                        <div class="field">
+                            <label class="label" for="old-password">Old password</label>
+                            <div class="control has-icons-left">
+                                <input id="old-password" class="input" type="text" placeholder="Password" disabled
+                                       value="••••••••">
+                                <span class="icon is-small is-left">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label" for="new-password">New password</label>
-                                <div class="control has-icons-left">
-                                    <input id="new-password" autofocus class="input" type="text" placeholder="Password" autocomplete="off">
-                                    <span class="icon is-small is-left">
-                                    <i class="fas fa-key"></i>
-                                </span>
-                                </div>
-                                <p id="password-hint" class="help is-danger"></p>
-                            </div>
-                            <div class="field">
-                                <p class="control">
-                                    <input type="submit" value="Update" class="button is-success">
-                                </p>
-                            </div>
-                        </form>
-                        <div id="victory-content" class="is-hidden">
-                            <h1 class="title">Well done!</h1>
-                            <p class="subtitle">
-                                The password was <code id="password-revealed"></code>!
-                            </p>
-                            <div class="field">
-                                <p class="control">
-                                    <button id="new-game" class="button is-success">New game</button>
-                                </p>
                             </div>
                         </div>
-                        <p id="debug" style="display: none"></p>
+                        <div class="field">
+                            <label class="label" for="new-password">New password</label>
+                            <div class="control has-icons-left">
+                                <input id="new-password" autofocus class="input" type="text" placeholder="Password"
+                                       autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-key"></i>
+                                </span>
+                            </div>
+                            <p id="password-hint" class="help is-danger"></p>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <input type="submit" value="Update" class="button is-success">
+                            </p>
+                        </div>
+                    </form>
+                    <div id="victory-content" class="is-hidden">
+                        <h1 class="title">Well done!</h1>
+                        <p class="subtitle">
+                            The password was <code id="password-revealed"></code>!
+                        </p>
+                        <div class="field">
+                            <p class="control">
+                                <button id="new-game" class="button is-success">New game</button>
+                            </p>
+                        </div>
+                    </div>
+                    <p id="debug" style="display: none"></p>
+                </div>
+                <div class="column is-4">
+                    <div class="message">
+                        <div class="message-header">Password requirements</div>
+                        <div class="message-body">
+                            <ul id="password-constraints" style="list-style: disc; margin-left: 1em"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <script src="index.ts" type="module"></script>
-    </body>
+        </div>
+    </div>
+    </div>
+</section>
+<script src="index.ts" type="module"></script>
+</body>
 </html>

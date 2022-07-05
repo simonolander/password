@@ -8,6 +8,7 @@ const signInForm = document.getElementById("sign-in-form") as HTMLFormElement
 const newGameButton = document.getElementById("new-game")
 const victoryContent = document.getElementById("victory-content")
 const passwordRevealed = document.getElementById("password-revealed") as HTMLParagraphElement
+const passwordConstraints = document.getElementById("password-constraints")
 
 function setOldPassword() {
     const username = "hi there"
@@ -38,11 +39,22 @@ function victory(password: string) {
 function onFormSubmit(level: Level) {
     return function () {
         const password = newPasswordInput.value
-        for (const validator of level.validators) {
-            if (!validator.validate(password)) {
-                passwordHint.textContent = validator.message
-                return false
+        const success = level.validators.every(it => it.validate(password))
+        for (const child of [...passwordConstraints.children]) {
+            child.remove()
+        }
+        for (let validator of level.validators) {
+            const li = document.createElement("li");
+            li.textContent = validator.message
+            if (validator.validate(password)) {
+                li.className = "has-text-success has-text-weight-medium"
+            } else {
+                li.className = "has-text-danger has-text-weight-medium"
             }
+            passwordConstraints.appendChild(li)
+        }
+        if (!success) {
+            return false
         }
         victory(password)
         return false
@@ -58,6 +70,11 @@ function main() {
     }
 
     const level = Levels[0]
+    for (const validator of level.validators) {
+        const li = document.createElement("li");
+        li.textContent = validator.message
+        passwordConstraints.appendChild(li)
+    }
     signInForm.onsubmit = onFormSubmit(level)
 }
 
