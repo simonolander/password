@@ -1,9 +1,12 @@
+import {isDigit, isLowercase, isSpecial, isUppercase, none, some} from "../util";
+import {US_STATES} from "./constant/states";
+
 export interface Constraint {
     message: string
-    validate: (string) => boolean
+    validate: (password: string) => boolean
 }
 
-export const MinimumPasswordLength = function (length: number): Constraint {
+export const MinimumLength = function (length: number): Constraint {
     return {
         message: `Must be at least ${length} characters`,
         validate: password => password.length >= length
@@ -15,4 +18,47 @@ export const MaximumPasswordLength = function (length: number): Constraint {
         message: `Must be at most ${length} characters`,
         validate: password => password.length <= length
     }
+}
+
+export const MustContainUppercase = function (): Constraint {
+    return {
+        message: `Must contain at least one uppercase character`,
+        validate: some(isUppercase)
+    }
+}
+
+export const MustNotContainUppercase: Constraint = {
+    message: `Must not contain any uppercase characters`,
+    validate: none(isUppercase)
+}
+
+export const MustContainLowercase = function (): Constraint {
+    return {
+        message: `Must contain at least one lowercase character`,
+        validate: some(isLowercase)
+    }
+}
+
+export const MustContainDigit = function (): Constraint {
+    return {
+        message: `Must contain at least one digit`,
+        validate: some(isDigit)
+    }
+}
+
+export const MustContainSpecial = function (): Constraint {
+    return {
+        message: `Must contain at least one special character`,
+        validate: some(isSpecial)
+    }
+}
+
+export const MustContainAmericanState: Constraint = {
+    message: `Must contain at least one US state`,
+    validate: password => US_STATES.some(state => password.toLowerCase().includes(state.toLowerCase()))
+}
+
+export const MustNotContainMackerel: Constraint = {
+    message: `Must not contain any letter in the word mackerel`,
+    validate: password => ![..."mackerel"].some(c => password.toLowerCase().includes(c))
 }

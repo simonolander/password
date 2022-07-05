@@ -1,3 +1,5 @@
+
+
 export const heartEmojis = "💌💘💝💖💗💓💞💕💟💔🧡💛💚💙💜🤎🖤🤍"
 export const smileyEmojis = "😃😄😁😆😅🤣😂🙂🙃🫠😉😊😇🥰😍🤩😘😗😚😙🥲😋😛😜🤪😝🤑🤗🤭🫢🫣🤫🤔🫡🤐🤨😐😑😶🫥😏😒🙄😬😮🤥😌😔😪🤤😴😷🤒🤕🤢🤮🤧🥵🥶🥴😵🤯🤠🥳🥸😎🤓🧐😕🫤😟🙁😯😲😳🥺🥹😦😧😨😰😥😢😭😱😖😣😞😓😩😫🥱😤😡😠🤬😈👿"
 export const animalEmojis = "🐵🐒🦍🦧🐶🐕🦮🐩🐺🦊🦝🐱🐈🦁🐯🐅🐆🐴🐎🦄🦓🦌🦬🐮🐂🐃🐄🐷🐖🐗🐽🐏🐑🐐🐪🐫🦙🦒🐘🦣🦏🦛🐭🐁🐀🐹🐰🐇🐿🦫🦔🦇🐻🐨🐼🦥🦦🦨🦘🦡🦃🐔🐓🐣🐤🐥🐦🐧🕊🦅🦆🦢🦉🦤🪶🦩🦚🦜🐸🐊🐢🦎🐍🐲🐉🦕🦖🐳🐋🐬🦪🦭🐟🐠🐡🦈🐙🐚🪸🐌🦋🐛🐜🐝🪲🐞🦗🪳🕷🦂🦟🪰🪱🦀🦞🦐🦑"
@@ -29,3 +31,34 @@ export function choose(string: string): string {
     // @ts-ignore
     return chooseArray(symbols(string))
 }
+
+export function containsAny(needles: string): (string: string) => boolean {
+    const set = new Set(needles)
+    return function (haystack: string): boolean {
+        return [...haystack].some(h => set.has(h));
+    }
+}
+
+export function isDigit(character: string): boolean {
+    return [...digits].some(it => it == character)
+}
+
+export function isUppercase(character: string): boolean {
+    return character.toLowerCase() !== character
+}
+
+export function isLowercase(character: string): boolean {
+    return character.toUpperCase() !== character
+}
+
+export function isSpecial(character: string): boolean {
+    return !isUppercase(character) && !isLowercase(character) && !isDigit(character);
+}
+
+export const some = predicate => (password: string) => [...password].some(predicate)
+export const none = predicate => (password: string) => ![...password].some(predicate)
+
+export const lowercase = "abcdefghijklmnopqrstuvwxyzåäö"
+export const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ"
+export const digits = "0123456789"
+export const specials = "\"!#€%&/()=?'^°§+´¨-_.:,;<>©¶@£$∞§|[]≈ ±~™–…‚≤•¡”¥¢‰\\{}≠¿`’·"

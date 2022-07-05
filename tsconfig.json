@@ -6,7 +6,10 @@
       "dom",
       "es5",
       "scripthost",
-      "es2015.symbol"
-    ]
+      "es2015.symbol",
+      "dom.iterable",
+      "es6"
+    ],
+    "downlevelIteration": true,
   }
 }
