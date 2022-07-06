@@ -13,18 +13,16 @@ export const MinimumLength = function (length: number): Constraint {
     }
 }
 
-export const MaximumPasswordLength = function (length: number): Constraint {
+export const MaximumLength = function (length: number): Constraint {
     return {
         message: `Must be at most ${length} characters`,
         validate: password => password.length <= length
     }
 }
 
-export const MustContainUppercase = function (): Constraint {
-    return {
-        message: `Must contain at least one uppercase character`,
-        validate: some(isUppercase)
-    }
+export const MustContainUppercase: Constraint = {
+    message: `Must contain at least one uppercase character`,
+    validate: some(isUppercase)
 }
 
 export const MustNotContainUppercase: Constraint = {
@@ -32,25 +30,19 @@ export const MustNotContainUppercase: Constraint = {
     validate: none(isUppercase)
 }
 
-export const MustContainLowercase = function (): Constraint {
-    return {
-        message: `Must contain at least one lowercase character`,
-        validate: some(isLowercase)
-    }
+export const MustContainLowercase: Constraint = {
+    message: `Must contain at least one lowercase character`,
+    validate: some(isLowercase)
 }
 
-export const MustContainDigit = function (): Constraint {
-    return {
-        message: `Must contain at least one digit`,
-        validate: some(isDigit)
-    }
+export const MustContainDigit: Constraint = {
+    message: `Must contain at least one digit`,
+    validate: some(isDigit)
 }
 
-export const MustContainSpecial = function (): Constraint {
-    return {
-        message: `Must contain at least one special character`,
-        validate: some(isSpecial)
-    }
+export const MustContainSpecial: Constraint = {
+    message: `Must contain at least one special character`,
+    validate: some(isSpecial)
 }
 
 export const MustContainAmericanState: Constraint = {
