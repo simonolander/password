@@ -1,5 +1,5 @@
 import {
-    Constraint,
+    PasswordRequirement,
     MaximumLength,
     MinimumLength,
     MustContainAmericanState,
@@ -9,16 +9,16 @@ import {
     MustContainUppercase,
     MustNotContainMackerel,
     MustNotContainUppercase
-} from "./Constraint";
+} from "./PasswordRequirement";
 
 export interface Level {
     levelId: string
-    validators: Constraint[]
+    requirements: PasswordRequirement[]
 }
 
 export const mackerel: Level = {
     levelId: "mackerel",
-    validators: [
+    requirements: [
         MinimumLength(6),
         MustNotContainUppercase,
         MustContainAmericanState,
@@ -28,7 +28,7 @@ export const mackerel: Level = {
 
 export const basic: Level = {
     levelId: "basic",
-    validators: [
+    requirements: [
         MinimumLength(4),
         MaximumLength(8),
         MustContainUppercase,

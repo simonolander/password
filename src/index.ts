@@ -39,14 +39,14 @@ function victory(password: string) {
 function onFormSubmit(level: Level) {
     return function () {
         const password = newPasswordInput.value
-        const success = level.validators.every(it => it.validate(password))
+        const success = level.requirements.every(it => it.validate(password))
         for (const child of [...passwordConstraints.children]) {
             child.remove()
         }
-        for (let validator of level.validators) {
+        for (const requirement of level.requirements) {
             const li = document.createElement("li");
-            li.textContent = validator.message
-            if (validator.validate(password)) {
+            li.textContent = requirement.message
+            if (requirement.validate(password)) {
                 li.className = "has-text-success has-text-weight-medium"
             } else {
                 li.className = "has-text-danger has-text-weight-medium"
@@ -70,9 +70,9 @@ function main() {
     }
 
     const level = Levels[0]
-    for (const validator of level.validators) {
+    for (const requirement of level.requirements) {
         const li = document.createElement("li");
-        li.textContent = validator.message
+        li.textContent = requirement.message
         passwordConstraints.appendChild(li)
     }
     signInForm.onsubmit = onFormSubmit(level)
