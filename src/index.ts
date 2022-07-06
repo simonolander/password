@@ -10,12 +10,6 @@ const victoryContent = document.getElementById("victory-content")
 const passwordRevealed = document.getElementById("password-revealed") as HTMLParagraphElement
 const passwordConstraints = document.getElementById("password-constraints")
 
-function setOldPassword() {
-    const username = "hi there"
-    oldPasswordInput.value = username
-    return username
-}
-
 newPasswordInput.oninput = function onPasswordChange() {
     newPasswordInput.classList.remove("is-danger")
     passwordHint.textContent = ""
