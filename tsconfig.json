@@ -11,5 +11,7 @@
       "es6"
     ],
     "downlevelIteration": true,
+    "strictNullChecks": true,
+    "strict": true
   }
 }
